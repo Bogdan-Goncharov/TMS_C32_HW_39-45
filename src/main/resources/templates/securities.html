@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Security List</title>
+</head>
+<body>
+<h1>Security List</h1>
+<a href="/securities/new">Add New Security</a>
+<ul>
+  <th:block th:each="security : ${securities}">
+    <li>
+      <span th:text="${security.login}"></span> -
+      <span th:text="${security.role}"></span>
+      <a th:href="@{'/securities/edit/' + ${security.id}}">Edit</a>
+      <a th:href="@{'/securities/delete/' + ${security.id}}" onclick="return confirm('Delete this security?');">Delete</a>
+    </li>
+  </th:block>
+</ul>
+</body>
+</html>
