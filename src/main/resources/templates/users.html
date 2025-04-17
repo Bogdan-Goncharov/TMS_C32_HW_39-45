@@ -7,14 +7,12 @@
 <h1>User List</h1>
 <a href="/users/new">Add New User</a>
 <ul>
-    <th:block th:each="user : ${users}">
-        <li>
-            <span th:text="${user.firstname + ' ' + user.lastname}"></span> -
-            <span th:text="${user.email}"></span>
-            <a th:href="@{'/users/edit/' + ${user.id}}">Edit</a>
-            <a th:href="@{'/users/delete/' + ${user.id}}" onclick="return confirm('Delete this user?');">Delete</a>
-        </li>
-    </th:block>
+    <li th:each="user : ${users}">
+        <span th:text="${user.firstname + ' ' + user.lastname}"></span> -
+        <span th:text="${user.email}"></span>
+        <a th:href="@{'/users/edit/' + ${user.id}}">Edit</a>
+        <a th:href="@{'/users/delete/' + ${user.id}}" onclick="return confirm('Delete this user?');">Delete</a>
+    </li>
 </ul>
 </body>
 </html>

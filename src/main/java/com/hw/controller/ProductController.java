@@ -1,7 +1,5 @@
 package com.hw.controller;
 
-
-
 import com.hw.model.dto.Product;
 import com.hw.service.ProductService;
 import org.springframework.stereotype.Controller;
@@ -17,7 +15,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public String getAllProducts(Model model) {
         model.addAttribute("products", productService.getAllProducts());
         return "products";

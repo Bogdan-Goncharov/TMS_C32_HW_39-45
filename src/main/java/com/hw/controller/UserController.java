@@ -1,7 +1,5 @@
 package com.hw.controller;
 
-
-
 import com.hw.model.dto.User;
 import com.hw.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -20,7 +18,7 @@ public class UserController {
     @GetMapping("/new")
     public String showCreateUserForm(Model model) {
         model.addAttribute("user", new User());
-        return "user-form";
+        return "users-form";
     }
 
     @PostMapping("/save")
@@ -37,7 +35,7 @@ public class UserController {
         } else {
             model.addAttribute("users", users);
         }
-        return "user-list"; // Имя шаблона HTML
+        return "user-list";
     }
 }
 

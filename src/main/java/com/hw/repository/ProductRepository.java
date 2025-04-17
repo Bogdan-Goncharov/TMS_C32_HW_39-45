@@ -1,7 +1,5 @@
 package com.hw.repository;
 
-
-
 import com.hw.util.DatabaseConnection;
 import com.hw.model.dto.Product;
 import org.springframework.stereotype.Repository;
@@ -13,14 +11,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.hw.config.SQLQuery.*;
+
+
 @Repository
 public class ProductRepository {
     public List<Product> getAllProducts() {
         List<Product> products = new ArrayList<>();
-        String query = "SELECT id, name, price, created, updated FROM product";
 
         try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query);
+             PreparedStatement statement = connection.prepareStatement(GET_ATTRIBUTES);
              ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {
@@ -42,10 +42,8 @@ public class ProductRepository {
     }
 
     public void saveProduct(Product product) {
-        String query = "INSERT INTO product (name, price, created, updated) VALUES (?, ?, ?, ?)";
-
         try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
+             PreparedStatement statement = connection.prepareStatement(SET_PRODUCTS)) {
 
             statement.setString(1, product.getName());
             statement.setDouble(2, product.getPrice());
@@ -59,10 +57,9 @@ public class ProductRepository {
     }
 
     public void deleteProduct(int id) {
-        String query = "DELETE FROM product WHERE id = ?";
 
         try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
+             PreparedStatement statement = connection.prepareStatement(DELETE_ID)) {
 
             statement.setInt(1, id);
             statement.executeUpdate();

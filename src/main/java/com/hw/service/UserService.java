@@ -1,7 +1,5 @@
 package com.hw.service;
 
-
-
 import com.hw.model.dto.User;
 import com.hw.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -18,14 +16,8 @@ public class UserService {
 
 
     public List<User> findAllUsers() {
-        return userRepository.findAll(); // Метод для получения всех пользователей
+        return userRepository.findAll();
     }
-
-
-    public User getUserById(Long id) {
-        return userRepository.getUserById(id);
-    }
-
     public void saveUser(User user) {
         userRepository.saveUser(user);
     }

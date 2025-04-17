@@ -1,8 +1,5 @@
 package com.hw.controller;
 
-
-
-
 import com.hw.model.dto.Security;
 import com.hw.service.SecurityService;
 import org.springframework.stereotype.Controller;
@@ -20,7 +17,7 @@ public class SecurityController {
         this.securityService = securityService;
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public String getAllSecurities(Model model) {
         model.addAttribute("securities", securityService.getAllSecurities());
         return "securities";

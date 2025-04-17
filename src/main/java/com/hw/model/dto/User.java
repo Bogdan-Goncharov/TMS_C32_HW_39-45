@@ -1,7 +1,6 @@
 package com.hw.model.dto;
 
 
-
 import jakarta.validation.constraints.*;
 
 import java.sql.Timestamp;
@@ -26,22 +25,6 @@ public class User {
     private Boolean isDeleted;
     private Security securityInfo;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstname='" + firstname + '\'' +
-                ", secondName='" + secondName + '\'' +
-                ", age=" + age +
-                ", email='" + email + '\'' +
-                ", sex='" + sex + '\'' +
-                ", telephoneNumber='" + telephoneNumber + '\'' +
-                ", created=" + created +
-                ", updated=" + updated +
-                ", isDeleted=" + isDeleted +
-                ", securityInfo=" + securityInfo +
-                '}';
-    }
 
     public Long getId() {
         return id;
@@ -115,19 +98,10 @@ public class User {
         this.updated = updated;
     }
 
-    public Boolean getDeleted() {
-        return isDeleted;
-    }
 
     public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
     }
 
-    public Security getSecurityInfo() {
-        return securityInfo;
-    }
 
-    public void setSecurityInfo(Security securityInfo) {
-        this.securityInfo = securityInfo;
-    }
 }

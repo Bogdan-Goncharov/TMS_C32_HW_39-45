@@ -5,7 +5,7 @@
 </head>
 <body>
 <h1 th:text="${user.id != null ? 'Edit User' : 'Add New User'}"></h1>
-<form th:action="@{${user.id != null ? '/users/update/' + ${user.id} : '/users/save'}}" method="post">
+<form th:action="@{${user.id != null ? '/users/update/' + user.id : '/users/save'}}" method="post">
     <label>Firstname: <input type="text" name="firstname" th:value="${user.firstname}" required></label><br>
     <label>Lastname: <input type="text" name="lastname" th:value="${user.lastname}" required></label><br>
     <label>Email: <input type="email" name="email" th:value="${user.email}" required></label><br>

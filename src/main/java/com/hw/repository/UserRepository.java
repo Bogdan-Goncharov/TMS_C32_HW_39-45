@@ -1,7 +1,5 @@
 package com.hw.repository;
 
-
-
 import com.hw.model.dto.User;
 import com.hw.util.DatabaseConnection;
 import org.springframework.stereotype.Repository;
@@ -10,15 +8,16 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.hw.config.SQLQuery.*;
 import static com.hw.util.DatabaseConnection.*;
+
 @Repository
 public class UserRepository {
     public User getUserById(Long id) {
-        String query = "SELECT * FROM users WHERE id = ?";
         User user = null;
 
         try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
+             PreparedStatement statement = connection.prepareStatement(GET_USER_BY_ID)) {
 
             statement.setLong(1, id);
 
@@ -42,10 +41,10 @@ public class UserRepository {
     }
 
     public void saveUser(User user) {
-        String query = "INSERT INTO users (firstname, second_name, age, email, created, updated) VALUES (?, ?, ?, ?, ?, ?)";
+
 
         try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
+             PreparedStatement statement = connection.prepareStatement(NEW_SECURITY_RECORD)) {
 
             statement.setString(1, user.getFirstname());
             statement.setString(2, user.getSecondName());
@@ -56,16 +55,17 @@ public class UserRepository {
 
             statement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace(); // Обработайте ошибку
+            e.printStackTrace();
         }
     }
+
     public List<User> findAll() {
         List<User> users = new ArrayList<>();
-        String query = "SELECT * FROM users"; // Имя таблицы: users
+
 
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
              Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(query)) {
+             ResultSet resultSet = statement.executeQuery(GET_USERS)) {
 
             while (resultSet.next()) {
                 User user = new User();
@@ -90,5 +90,5 @@ public class UserRepository {
     }
 
 
-    }
+}
 
